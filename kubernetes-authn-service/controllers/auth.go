@@ -14,6 +14,7 @@ type AuthController struct {
 	beego.Controller
 }
 
+// @router / [get]
 func (controller *AuthController) Get() {
 	log.Println("test method")
 	controller.Ctx.Output.SetStatus(http.StatusOK)
@@ -23,7 +24,7 @@ func (controller *AuthController) Get() {
 }
 
 //默认只生成username: bryson, group: manager
-
+// @router /getToken [get]
 func (controller *AuthController) GetToken() {
 	tokenString, err := auth.CreateToken("bryson", "manager")
 	if err != nil {
@@ -37,7 +38,7 @@ func (controller *AuthController) GetToken() {
 	controller.ServeJSON()
 	return
 }
-
+// @router /authenticate [post]
 func (controller *AuthController)Authenticate() {
 	var tokenReview authenticationv1.TokenReview
 	err := json.Unmarshal(controller.Ctx.Input.RequestBody, &tokenReview)
