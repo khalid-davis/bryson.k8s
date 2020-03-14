@@ -15,6 +15,11 @@ import (
 
 func init() {
 	ns := beego.NewNamespace("/v1",
+		beego.NSNamespace("/rbac",
+			beego.NSInclude(
+				&controllers.RBACController{},
+			),
+		),
 		beego.NSNamespace("/object",
 			beego.NSInclude(
 				&controllers.ObjectController{},
