@@ -19,7 +19,8 @@ var kubeconfigPath string
 func init() {
 	selfNamespace = "k8s-tester"
 	otherNamespace = "greenstock"
-	kubeconfigPath = "../kubeconfig"
+	//kubeconfigPath = "E:\\workspace\\learning\\go-learning\\Golang_Workspace\\src\\bryson.k8s\\kubernetes-tester\\kubeconfig"
+	kubeconfigPath = "E:\\workspace\\learning\\go-learning\\Golang_Workspace\\src\\bryson.k8s\\kubernetes-tester\\k8s-tester-config"
 }
 
 // @router /inclusterselfnamespace [get]
@@ -42,7 +43,7 @@ func (controller *RBACController) RBACInClusterSelfNamespace() {
 	}
 	log.Println("pod size: ", len(podList.Items))
 	controller.Ctx.Output.SetStatus(200)
-	controller.Data["json"] = podList.Items
+	controller.Data["json"] = podList.Items[0].Name
 	controller.ServeJSON()
 	return
 }
@@ -67,13 +68,13 @@ func (controller *RBACController) RBACInClusterOtherNamespace() {
 	}
 	log.Println("pod size: ", len(podList.Items))
 	controller.Ctx.Output.SetStatus(200)
-	controller.Data["json"] = podList.Items
+	controller.Data["json"] = podList.Items[0].Name
 	controller.ServeJSON()
 	return
 }
 
 
-// @route /inclusterNode [get]
+// @route /inclusternode [get]
 func (controller *RBACController) RBACInClusterNode() {
 	k8sClient, err := k8s.NewNativeK8sClientConfigByPath(kubeconfigPath)
 	if err != nil {
@@ -93,7 +94,7 @@ func (controller *RBACController) RBACInClusterNode() {
 	}
 	log.Println("Node size: ", len(nodeList.Items))
 	controller.Ctx.Output.SetStatus(200)
-	controller.Data["json"] = nodeList.Items
+	controller.Data["json"] = nodeList.Items[0].Name
 	controller.ServeJSON()
 	return
 }

@@ -13,7 +13,7 @@ import (
 //使用kubeconfig连接
 func K8sClientGoDemo() {
 	var clientset *kubernetes.Clientset
-	k8sConfig := flag.String("k8sconfig", "./config", "kubernetes config file path")
+	k8sConfig := flag.String("k8sconfig", "./kubeconfig", "kubernetes kubeconfig file path")
 	flag.Parse()
 	config, err := clientcmd.BuildConfigFromFlags("", *k8sConfig)
 	if err != nil {
