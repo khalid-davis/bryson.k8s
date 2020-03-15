@@ -73,7 +73,6 @@ func (controller *RBACController) RBACInClusterOtherNamespace() {
 	return
 }
 
-
 // @route /inclusternode [get]
 func (controller *RBACController) RBACInClusterNode() {
 	k8sClient, err := k8s.NewNativeK8sClientConfigByPath(kubeconfigPath)

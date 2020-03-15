@@ -18,7 +18,7 @@ type Client interface {
 type NativeK8sClient struct {
 	*kubernetes.Clientset
 	config *rest.Config
-	url string
+	url    string
 }
 
 func NewNativeK8sClient() (Client, error) {
@@ -62,4 +62,3 @@ func (client *NativeK8sClient) Pods(namespace string) (*v1.PodList, error) {
 func (client *NativeK8sClient) Nodes() (*v1.NodeList, error) {
 	return client.CoreV1().Nodes().List(metav1.ListOptions{})
 }
-
