@@ -61,6 +61,24 @@ func init() {
 			Filters:          nil,
 			Params:           nil})
 
+	beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:RBACController"] = append(beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:RBACController"],
+		beego.ControllerComments{
+			Method:           "RBACInClusterOtherNamespace",
+			Router:           `/inclusterothernamespace`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
+	beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:RBACController"] = append(beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:RBACController"],
+		beego.ControllerComments{
+			Method:           "RBACInClusterNode",
+			Router:           `/inclusternode`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams:     param.Make(),
+			Filters:          nil,
+			Params:           nil})
+
 	beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:UserController"] = append(beego.GlobalControllerRouter["bryson.k8s/kubernetes-tester/controllers:UserController"],
 		beego.ControllerComments{
 			Method:           "Post",
